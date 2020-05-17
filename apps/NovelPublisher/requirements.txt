@@ -1,0 +1,6 @@
+flask
+pymongo
+requests
+bs4
+markdown
+dnspython

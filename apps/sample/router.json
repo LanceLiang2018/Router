@@ -1,0 +1,9 @@
+{
+  "name": "sample",
+  "script": "sample",
+  "description": {
+    "owner": "Lance",
+    "description": "这是一个简单的应用实例。"
+  },
+  "requirements": ["flask"]
+}

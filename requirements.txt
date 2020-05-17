@@ -1,0 +1,8 @@
+flask-cors
+flask
+requests
+colorlog
+markdown
+dnspython
+pymongo
+bs4

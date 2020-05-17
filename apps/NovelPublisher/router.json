@@ -1,0 +1,9 @@
+{
+  "name": "NovelPublisher",
+  "script": "manage",
+  "description": {
+    "owner": "Lance",
+    "description": "小说托管。"
+  },
+  "requirements": ["flask"]
+}
