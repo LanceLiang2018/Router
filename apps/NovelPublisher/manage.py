@@ -1,7 +1,7 @@
 import os
 import sys
 from flask import *
-from .database import DataBase
+from database import DataBase
 import markdown
 import requests
 
@@ -23,7 +23,7 @@ def index():
             bookname = book['bookname']
         else:
             bookname = book
-        md = make_line(md, '- [%s](/%s)\n' % (bookname, bookname))
+        md = make_line(md, '- [%s](%s)\n' % (bookname, bookname))
     md = make_line(md, '[更新章节](/publish)')
     html = markdown.markdown(md)
     # return html
@@ -69,15 +69,15 @@ def get_chapters(bookname: str):
     md = path + '# %s\n' % bookname
     chapters = db.get_chapters(bookname)
     for chapter in chapters:
-        md = make_line(md, '- [%s](/%s/%s)' % (chapter['chaptername'],
-                                               chapter['bookname'], chapter['chaptername']))
+        md = make_line(md, '- [%s](./%s/%s)' % (chapter['chaptername'],
+                                                chapter['bookname'], chapter['chaptername']))
     md = markdown.markdown(md)
     return render_template("reader.html", contain=md, title=title)
 
 
 @app.route('/<string:bookname>/<string:chaptername>')
 def get_content(bookname, chaptername):
-    path = "[%s](%s)>[%s](%s)>%s\n" % ("首页", "/", bookname, "/%s" % bookname, chaptername)
+    path = "[%s](%s)>[%s](%s)>%s\n" % ("首页", '../../', bookname, "../%s" % bookname, chaptername)
     md = path + '# %s\n## %s\n' % (bookname, chaptername)
     title = "%s/%s - MyNovelPublisher" % (bookname, chaptername)
     content = db.get_content(bookname, chaptername)
